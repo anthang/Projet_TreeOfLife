@@ -59,6 +59,7 @@ namespace TreeOfLifeVisualization.Models
             var records = csv.GetRecords<dynamic>();
             Links = new List<Link>();
 
+
             foreach (var record in records)
             {
                 var link = new Link

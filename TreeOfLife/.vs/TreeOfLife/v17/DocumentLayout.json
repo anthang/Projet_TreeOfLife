@@ -1,0 +1,155 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\antho\\Desktop\\2024-2025\\Programmation_Interface\\2025-projet-G1\\Projet_TreeOfLife\\TreeOfLife\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{DC530B77-C300-40A9-AA6C-C746692C2A19}|TreeOfLife\\TreeOfLife.csproj|c:\\users\\antho\\desktop\\2024-2025\\programmation_interface\\2025-projet-g1\\projet_treeoflife\\treeoflife\\treeoflife\\views\\view.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DC530B77-C300-40A9-AA6C-C746692C2A19}|TreeOfLife\\TreeOfLife.csproj|solutionrelative:treeoflife\\views\\view.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DC530B77-C300-40A9-AA6C-C746692C2A19}|TreeOfLife\\TreeOfLife.csproj|c:\\users\\antho\\desktop\\2024-2025\\programmation_interface\\2025-projet-g1\\projet_treeoflife\\treeoflife\\treeoflife\\views\\view.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{DC530B77-C300-40A9-AA6C-C746692C2A19}|TreeOfLife\\TreeOfLife.csproj|solutionrelative:treeoflife\\views\\view.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DC530B77-C300-40A9-AA6C-C746692C2A19}|TreeOfLife\\TreeOfLife.csproj|c:\\users\\antho\\desktop\\2024-2025\\programmation_interface\\2025-projet-g1\\projet_treeoflife\\treeoflife\\treeoflife\\models\\data.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DC530B77-C300-40A9-AA6C-C746692C2A19}|TreeOfLife\\TreeOfLife.csproj|solutionrelative:treeoflife\\models\\data.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DC530B77-C300-40A9-AA6C-C746692C2A19}|TreeOfLife\\TreeOfLife.csproj|c:\\users\\antho\\desktop\\2024-2025\\programmation_interface\\2025-projet-g1\\projet_treeoflife\\treeoflife\\treeoflife\\controllers\\controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DC530B77-C300-40A9-AA6C-C746692C2A19}|TreeOfLife\\TreeOfLife.csproj|solutionrelative:treeoflife\\controllers\\controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DC530B77-C300-40A9-AA6C-C746692C2A19}|TreeOfLife\\TreeOfLife.csproj|c:\\users\\antho\\desktop\\2024-2025\\programmation_interface\\2025-projet-g1\\projet_treeoflife\\treeoflife\\treeoflife\\models\\node.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DC530B77-C300-40A9-AA6C-C746692C2A19}|TreeOfLife\\TreeOfLife.csproj|solutionrelative:treeoflife\\models\\node.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DC530B77-C300-40A9-AA6C-C746692C2A19}|TreeOfLife\\TreeOfLife.csproj|c:\\users\\antho\\desktop\\2024-2025\\programmation_interface\\2025-projet-g1\\projet_treeoflife\\treeoflife\\treeoflife\\views\\view.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DC530B77-C300-40A9-AA6C-C746692C2A19}|TreeOfLife\\TreeOfLife.csproj|solutionrelative:treeoflife\\views\\view.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DC530B77-C300-40A9-AA6C-C746692C2A19}|TreeOfLife\\TreeOfLife.csproj|c:\\users\\antho\\desktop\\2024-2025\\programmation_interface\\2025-projet-g1\\projet_treeoflife\\treeoflife\\treeoflife\\models\\link.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DC530B77-C300-40A9-AA6C-C746692C2A19}|TreeOfLife\\TreeOfLife.csproj|solutionrelative:treeoflife\\models\\link.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DC530B77-C300-40A9-AA6C-C746692C2A19}|TreeOfLife\\TreeOfLife.csproj|c:\\users\\antho\\desktop\\2024-2025\\programmation_interface\\2025-projet-g1\\projet_treeoflife\\treeoflife\\treeoflife\\models\\historique.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DC530B77-C300-40A9-AA6C-C746692C2A19}|TreeOfLife\\TreeOfLife.csproj|solutionrelative:treeoflife\\models\\historique.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 138,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 7,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "View.cs [Conception]",
+              "DocumentMoniker": "C:\\Users\\antho\\Desktop\\2024-2025\\Programmation_Interface\\2025-projet-G1\\Projet_TreeOfLife\\TreeOfLife\\TreeOfLife\\Views\\View.cs",
+              "RelativeDocumentMoniker": "TreeOfLife\\Views\\View.cs",
+              "ToolTip": "C:\\Users\\antho\\Desktop\\2024-2025\\Programmation_Interface\\2025-projet-G1\\Projet_TreeOfLife\\TreeOfLife\\TreeOfLife\\Views\\View.cs [Conception]",
+              "RelativeToolTip": "TreeOfLife\\Views\\View.cs [Conception]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-10T11:51:43.476Z",
+              "EditorCaption": " [Conception]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "View.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\antho\\Desktop\\2024-2025\\Programmation_Interface\\2025-projet-G1\\Projet_TreeOfLife\\TreeOfLife\\TreeOfLife\\Views\\View.Designer.cs",
+              "RelativeDocumentMoniker": "TreeOfLife\\Views\\View.Designer.cs",
+              "ToolTip": "C:\\Users\\antho\\Desktop\\2024-2025\\Programmation_Interface\\2025-projet-G1\\Projet_TreeOfLife\\TreeOfLife\\TreeOfLife\\Views\\View.Designer.cs",
+              "RelativeToolTip": "TreeOfLife\\Views\\View.Designer.cs",
+              "ViewState": "AgIAAC8AAAAAAAAAAAAkwEQAAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-10T10:54:03.986Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Node.cs",
+              "DocumentMoniker": "C:\\Users\\antho\\Desktop\\2024-2025\\Programmation_Interface\\2025-projet-G1\\Projet_TreeOfLife\\TreeOfLife\\TreeOfLife\\Models\\Node.cs",
+              "RelativeDocumentMoniker": "TreeOfLife\\Models\\Node.cs",
+              "ToolTip": "C:\\Users\\antho\\Desktop\\2024-2025\\Programmation_Interface\\2025-projet-G1\\Projet_TreeOfLife\\TreeOfLife\\TreeOfLife\\Models\\Node.cs",
+              "RelativeToolTip": "TreeOfLife\\Models\\Node.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-10T10:33:25.516Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Link.cs",
+              "DocumentMoniker": "C:\\Users\\antho\\Desktop\\2024-2025\\Programmation_Interface\\2025-projet-G1\\Projet_TreeOfLife\\TreeOfLife\\TreeOfLife\\Models\\Link.cs",
+              "RelativeDocumentMoniker": "TreeOfLife\\Models\\Link.cs",
+              "ToolTip": "C:\\Users\\antho\\Desktop\\2024-2025\\Programmation_Interface\\2025-projet-G1\\Projet_TreeOfLife\\TreeOfLife\\TreeOfLife\\Models\\Link.cs",
+              "RelativeToolTip": "TreeOfLife\\Models\\Link.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-10T10:33:24.625Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Historique.cs",
+              "DocumentMoniker": "C:\\Users\\antho\\Desktop\\2024-2025\\Programmation_Interface\\2025-projet-G1\\Projet_TreeOfLife\\TreeOfLife\\TreeOfLife\\Models\\Historique.cs",
+              "RelativeDocumentMoniker": "TreeOfLife\\Models\\Historique.cs",
+              "ToolTip": "C:\\Users\\antho\\Desktop\\2024-2025\\Programmation_Interface\\2025-projet-G1\\Projet_TreeOfLife\\TreeOfLife\\TreeOfLife\\Models\\Historique.cs",
+              "RelativeToolTip": "TreeOfLife\\Models\\Historique.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-10T10:33:23.631Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Data.cs",
+              "DocumentMoniker": "C:\\Users\\antho\\Desktop\\2024-2025\\Programmation_Interface\\2025-projet-G1\\Projet_TreeOfLife\\TreeOfLife\\TreeOfLife\\Models\\Data.cs",
+              "RelativeDocumentMoniker": "TreeOfLife\\Models\\Data.cs",
+              "ToolTip": "C:\\Users\\antho\\Desktop\\2024-2025\\Programmation_Interface\\2025-projet-G1\\Projet_TreeOfLife\\TreeOfLife\\TreeOfLife\\Models\\Data.cs",
+              "RelativeToolTip": "TreeOfLife\\Models\\Data.cs",
+              "ViewState": "AgIAACIAAAAAAAAAAAAkwDQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-10T10:33:22.713Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Controller.cs",
+              "DocumentMoniker": "C:\\Users\\antho\\Desktop\\2024-2025\\Programmation_Interface\\2025-projet-G1\\Projet_TreeOfLife\\TreeOfLife\\TreeOfLife\\Controllers\\Controller.cs",
+              "RelativeDocumentMoniker": "TreeOfLife\\Controllers\\Controller.cs",
+              "ToolTip": "C:\\Users\\antho\\Desktop\\2024-2025\\Programmation_Interface\\2025-projet-G1\\Projet_TreeOfLife\\TreeOfLife\\TreeOfLife\\Controllers\\Controller.cs",
+              "RelativeToolTip": "TreeOfLife\\Controllers\\Controller.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEAAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-10T10:33:19.236Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "View.cs",
+              "DocumentMoniker": "C:\\Users\\antho\\Desktop\\2024-2025\\Programmation_Interface\\2025-projet-G1\\Projet_TreeOfLife\\TreeOfLife\\TreeOfLife\\Views\\View.cs",
+              "RelativeDocumentMoniker": "TreeOfLife\\Views\\View.cs",
+              "ToolTip": "C:\\Users\\antho\\Desktop\\2024-2025\\Programmation_Interface\\2025-projet-G1\\Projet_TreeOfLife\\TreeOfLife\\TreeOfLife\\Views\\View.cs",
+              "RelativeToolTip": "TreeOfLife\\Views\\View.cs",
+              "ViewState": "AgIAAHIAAAAAAAAAAAAwwIIAAABFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-10T10:33:09.643Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
