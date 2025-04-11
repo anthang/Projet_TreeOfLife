@@ -3,9 +3,6 @@
     partial class View
     {
         private System.ComponentModel.IContainer components = null;
-        private System.Windows.Forms.TreeView treeView1;
-        private System.Windows.Forms.Label labelInfo;
-        private System.Windows.Forms.ListBox listBox1;
 
         protected override void Dispose(bool disposing)
         {
@@ -33,7 +30,7 @@
             treeView1.DrawMode = TreeViewDrawMode.OwnerDrawText;
             treeView1.Location = new Point(131, 29);
             treeView1.Name = "treeView1";
-            treeView1.Size = new Size(419, 425);
+            treeView1.Size = new Size(421, 425);
             treeView1.TabIndex = 3;
             treeView1.DrawNode += treeview_ancestor;
             treeView1.AfterSelect += treeView1_Select;
@@ -42,12 +39,10 @@
             // 
             labelInfo.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
             labelInfo.BorderStyle = BorderStyle.FixedSingle;
-            labelInfo.Location = new Point(556, 9);
+            labelInfo.Location = new Point(558, 9);
             labelInfo.Name = "labelInfo";
-            labelInfo.Size = new Size(232, 442);
+            labelInfo.Size = new Size(232, 191);
             labelInfo.TabIndex = 1;
-            
-
             // 
             // listBox1
             // 
@@ -77,27 +72,28 @@
             button1.Text = "reset_tree";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
-
             // 
             // View
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 460);
+            ClientSize = new Size(802, 460);
             Controls.Add(button1);
             Controls.Add(textBox1);
             Controls.Add(listBox1);
             Controls.Add(labelInfo);
             Controls.Add(treeView1);
             Name = "View";
-            Text = "Tree Of Life ";
+            Text = " ";
             Load += MainView_Load;
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
+        private TreeView treeView1;
+        private Label labelInfo;
+        private ListBox listBox1;
         private TextBox textBox1;
         private Button button1;
     }
