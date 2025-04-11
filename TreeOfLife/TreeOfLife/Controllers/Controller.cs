@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing.Printing;
 using System.Linq;
 using System.Windows.Forms.VisualStyles;
@@ -52,8 +53,9 @@ namespace TreeOfLifeVisualization.Controllers
         public void GetAncestor(int id, List<Node> ancestor)
         {
             var current_node = GetNodeById(id);
+            
             ancestor.Insert(0, current_node);
-            if(current_node.Parent == null)
+            if (current_node.Parent == null)
             {
                 return;
             }

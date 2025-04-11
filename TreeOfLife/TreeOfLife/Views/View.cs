@@ -48,11 +48,6 @@ namespace TreeOfLifeVisualization.Views
             if (visited == null)
                 visited = new HashSet<int>();
 
-            if (visited.Contains(model.NodeId))
-            {
-                return new TreeNode($"[Cycle détecté: {model.NodeName}]");
-            }
-
             visited.Add(model.NodeId);
             string text = string.IsNullOrEmpty(model.NodeName) ? $"Node {model.NodeId}" : model.NodeName;
             TreeNode treeNode = new TreeNode(text) { Tag = model };
@@ -86,12 +81,24 @@ namespace TreeOfLifeVisualization.Views
             {
                 string node_select = listBox1.SelectedItem.ToString();
                 var split = node_select.Split(':');
-                int node_id = int.Parse(split[1]);
+                 int node_id = int.Parse(split[1]);
                 var nodes = new List<Node>();
                 _controller.GetAncestor(node_id, nodes);
                 _ancestors = nodes;
                 treeView1.Invalidate();
+                var node = _controller.GetNodeById(node_id);
+                if ( node!= null )
+                {
+                    string info = $"ID: {node.NodeId}\r\n" +
+                                  $"Nom: {node.NodeName}\r\n" +
+                                  $"Extinct? {node.IsExtinct}\r\n" +
+                                  $"Confidence: {node.Confidence}\r\n" +
+                                  $"Phylesis: {node.Phylesis}\r\n";
+                    labelInfo.Text = info;
+                }
             }
+           
+           
         }
 
         private void treeview_ancestor(object sender, DrawTreeNodeEventArgs e)
