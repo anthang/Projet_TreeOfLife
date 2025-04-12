@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TreeOfLife")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+875f030635018505991c03ceb2e188fba53e6db0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b393f787b901cce566ddb8ad2ecee8724bf0215e")]
 [assembly: System.Reflection.AssemblyProductAttribute("TreeOfLife")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TreeOfLife")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

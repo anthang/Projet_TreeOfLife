@@ -55,6 +55,7 @@ namespace TreeOfLifeVisualization.Controllers
             var current_node = GetNodeById(id);
             
             ancestor.Insert(0, current_node);
+
             if (current_node.Parent == null)
             {
                 return;

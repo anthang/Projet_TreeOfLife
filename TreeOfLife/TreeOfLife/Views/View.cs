@@ -150,6 +150,19 @@ namespace TreeOfLifeVisualization.Views
                     _ancestors = nodes;
                     treeView1.Invalidate();
                 }
+                else if (_controller.GetNodeById(int.Parse(tb.Text)) != null)
+                {
+
+                    node = _controller.GetNodeById(int.Parse(tb.Text));
+                    List<Node> nodes = new List<Node>();
+                    _controller.GetAncestor(node.NodeId, nodes);
+                    _ancestors = nodes;
+                    treeView1.Invalidate();
+                }
+                else
+                {
+                    return;
+                }
 
             }
         }
