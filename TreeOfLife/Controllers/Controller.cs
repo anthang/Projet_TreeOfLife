@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing.Printing;
 using System.Linq;
+using System.Windows.Forms.VisualStyles;
 using TreeOfLifeVisualization.Models;
 
 namespace TreeOfLifeVisualization.Controllers
@@ -25,7 +28,7 @@ namespace TreeOfLifeVisualization.Controllers
             }
             catch (Exception)
             {
-                
+
                 Console.WriteLine($"ID invalid");
                 return null;
             }
@@ -43,6 +46,27 @@ namespace TreeOfLifeVisualization.Controllers
                 return null;
 
             }
+        
         }
+
+
+        public void GetAncestor(int id, List<Node> ancestor)
+        {
+            var current_node = GetNodeById(id);
+            
+            ancestor.Insert(0, current_node);
+
+            if (current_node.Parent == null)
+            {
+                return;
+            }
+            else
+            {
+                GetAncestor(current_node.Parent.NodeId, ancestor);
+            }
+
+        }
+
     }
 }
+

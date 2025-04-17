@@ -27,45 +27,45 @@ namespace TreeOfLifeVisualization.Models
 
         private void LoadNodes()
         {
-            var config = new CsvConfiguration(CultureInfo.InvariantCulture) { HasHeaderRecord = true };
-            using var reader = new StreamReader(_nodesFilePath);
-            using var csv = new CsvReader(reader, config);
-            var records = csv.GetRecords<dynamic>();
+            var lines = File.ReadAllLines(_nodesFilePath);
             Nodes = new List<Node>();
 
-            foreach (var record in records)
+            for (int i = 1; i < lines.Length; i++)
             {
+                var fields = lines[i].Split(',');
+
                 var node = new Node
                 {
-                    NodeId = int.Parse(record.node_id),
-                    NodeName = record.node_name == "none" ? "" : (string)record.node_name,
-                    ChildNodesCount = int.Parse(record.child_nodes),
-                    IsLeaf = record.leaf_node == "1",
-                    HasTolOrgLink = record.tolorg_link == "1",
-                    IsExtinct = record.extinct == "1",
-                    Confidence = int.Parse(record.confidence),
-                    Phylesis = int.Parse(record.phylesis)
+                    NodeId = int.Parse(fields[0]),
+                    NodeName = fields[1] == "none" ? "" : fields[1],
+                    ChildNodesCount = int.Parse(fields[2]),
+                    IsLeaf = fields[3] == "1",
+                    HasTolOrgLink = fields[4] == "1",
+                    IsExtinct = fields[5] == "1",
+                    Confidence = int.Parse(fields[6]),
+                    Phylesis = int.Parse(fields[7])
                 };
 
                 Nodes.Add(node);
             }
         }
 
+
         private void LoadLinks()
         {
-            var config = new CsvConfiguration(CultureInfo.InvariantCulture) { HasHeaderRecord = true };
-            using var reader = new StreamReader(_linksFilePath);
-            using var csv = new CsvReader(reader, config);
-            var records = csv.GetRecords<dynamic>();
+            var lines = File.ReadAllLines(_linksFilePath);
             Links = new List<Link>();
 
-            foreach (var record in records)
+            for (int i = 1; i < lines.Length; i++)
             {
+                var fields = lines[i].Split(',');
+
                 var link = new Link
                 {
-                    SourceNodeId = int.Parse(record.source_node_id),
-                    TargetNodeId = int.Parse(record.target_node_id)
+                    SourceNodeId = int.Parse(fields[0]),
+                    TargetNodeId = int.Parse(fields[1]),
                 };
+
                 Links.Add(link);
             }
         }
