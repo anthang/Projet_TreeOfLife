@@ -26,19 +26,18 @@ namespace GraphApp
             Text = "Tree Of Life - WinForms";
             Width = 1200; Height = 800; DoubleBuffered = true;
 
-            // --- modèle & vue
+            // -------- modèle & vue --------
             _graph = GraphLoader.LoadFromCsv("Data/nodes.csv", "Data/links.csv");
             _view = new GraphView(_graph) { Dock = DockStyle.Fill };
             Controls.Add(_view);
 
-            // --- Historique gauche
+            // -------- Historique --------
             var histBox = new GroupBox { Text = "Historique", Dock = DockStyle.Left, Width = 180, Padding = new Padding(5) };
             _historyList = new ListBox { Dock = DockStyle.Fill };
-            histBox.Controls.Add(_historyList);
-            Controls.Add(histBox);
+            histBox.Controls.Add(_historyList); Controls.Add(histBox);
             _historyList.SelectedIndexChanged += HistorySelected;
 
-            // --- Recherche haut
+            // -------- Recherche --------
             var top = new Panel { Dock = DockStyle.Top, Height = 35, Padding = new Padding(5) };
             _searchBox = new TextBox { Dock = DockStyle.Fill, PlaceholderText = "ID ou titre…" };
             _searchBtn = new Button { Text = "Go", Dock = DockStyle.Right, Width = 60 };
@@ -47,19 +46,20 @@ namespace GraphApp
             _searchBtn.Click += (_, _) => Search();
             _searchBox.KeyDown += (_, e) => { if (e.KeyCode == Keys.Enter) { Search(); e.Handled = true; } };
 
-            // --- Colonne droite
+            // -------- Colonne droite --------
             var right = new Panel { Dock = DockStyle.Right, Width = 280, Padding = new Padding(5) };
             Controls.Add(right);
 
-            // 1) Formes
-            _shapePanel = new GroupBox { Text = "Formes", Dock = DockStyle.Top, Height = 145, Padding = new Padding(5) };
+            // --- Formes ---
+            _shapePanel = new GroupBox { Text = "Formes", Dock = DockStyle.Top, Height = 170, Padding = new Padding(5) };
             right.Controls.Add(_shapePanel);
-            AddShape("Ovale", NodeShape.Circle, true);
+            AddShape("Cercle", NodeShape.Circle, true);
+            AddShape("Ovale", NodeShape.Oval);
             AddShape("Carré", NodeShape.Square);
             AddShape("Rectangle", NodeShape.Rectangle);
             AddShape("Triangle", NodeShape.Triangle);
 
-            // 2) Options couleurs
+            // --- Options couleurs ---
             _optionsPanel = new GroupBox { Text = "Options couleurs", Dock = DockStyle.Top, Height = 155, Padding = new Padding(5) };
             right.Controls.Add(_optionsPanel);
             AddColorOption("Par défaut", NodeColorMode.Default, true);
@@ -68,18 +68,23 @@ namespace GraphApp
             AddColorOption("Confidence", NodeColorMode.Confidence);
             AddColorOption("Phylesis", NodeColorMode.Phylesis);
 
-            // 3) Infos
+            // --- Infos nœud ---
             var info = new GroupBox { Text = "Infos nœud", Dock = DockStyle.Top, Height = 140, Padding = new Padding(5) };
             right.Controls.Add(info);
             _phy = Make(info); _conf = Make(info); _extinct = Make(info);
             _link = Make(info); _name = Make(info); _id = Make(info);
 
-            // events
-            _view.NodeClicked += n => { ShowInfo(n); Highlight(n); AddHistory(n); };
-            _physics = new PhysicsController(_graph, _view); _physics.Start();
+            // -------- Physique & événements --------
+            _physics = new PhysicsController(_graph, _view);
+
+            _view.NodeClicked += n => { ShowInfo(n); HighlightPath(n); AddHistory(n); };
+            //_view.DragStarted += () => _physics.Pause();
+            //_view.DragEnded += () => _physics.Resume();
+
+            _physics.Start();
         }
 
-        // ---------- aides UI ----------
+        // ---------- UI helpers ----------
         private static Label Make(Control host)
         {
             var l = new Label { Dock = DockStyle.Top, Height = 20, AutoEllipsis = true };
@@ -87,25 +92,25 @@ namespace GraphApp
             return l;
         }
 
-        private void AddShape(string text, NodeShape shp, bool init = false)
+        private void AddShape(string text, NodeShape shape, bool initial = false)
         {
-            var cb = new CheckBox { Text = text, Dock = DockStyle.Top, Checked = init };
+            var cb = new CheckBox { Text = text, Dock = DockStyle.Top, Checked = initial };
             cb.CheckedChanged += (_, _) =>
             {
                 if (!cb.Checked) return;
-                foreach (var o in _shapePanel.Controls.OfType<CheckBox>().Where(c => c != cb)) o.Checked = false;
-                _view.CurrentShape = shp; _view.Invalidate();
+                foreach (var other in _shapePanel.Controls.OfType<CheckBox>().Where(b => b != cb))
+                    other.Checked = false;
+                _view.CurrentShape = shape; _view.Invalidate();
             };
             _shapePanel.Controls.Add(cb);
-            if (init) _view.CurrentShape = shp;
+            if (initial) _view.CurrentShape = shape;
         }
 
-        private void AddColorOption(string text, NodeColorMode mode, bool init = false)
+        private void AddColorOption(string text, NodeColorMode mode, bool initial = false)
         {
-            var rb = new RadioButton { Text = text, Dock = DockStyle.Top, Checked = init };
+            var rb = new RadioButton { Text = text, Dock = DockStyle.Top, Checked = initial };
             rb.CheckedChanged += (_, _) => { if (rb.Checked) { _view.ColorMode = mode; _view.Invalidate(); } };
             _optionsPanel.Controls.Add(rb); _optionsPanel.Controls.SetChildIndex(rb, 0);
-            if (init) _view.ColorMode = mode;
         }
 
         // ---------- Historique ----------
@@ -116,13 +121,14 @@ namespace GraphApp
             _historyList.Items.Insert(0, entry);
         }
 
-        private void HistorySelected(object? s, EventArgs e)
+        private void HistorySelected(object? sender, EventArgs e)
         {
-            if (_historyList.SelectedItem is not string txt) return;
-            int colon = txt.LastIndexOf(':'); if (colon < 0) return;
-            if (!int.TryParse(txt[(colon + 1)..].Trim(), out int id)) return;
+            if (_historyList.SelectedItem is not string s) return;
+            int colon = s.LastIndexOf(':'); if (colon < 0) return;
+            if (!int.TryParse(s[(colon + 1)..].Trim(), out int id)) return;
             if (!_graph.ById.TryGetValue(id, out var node)) return;
-            ShowInfo(node); Highlight(node);
+
+            ShowInfo(node); HighlightPath(node);
         }
 
         // ---------- Infos ----------
@@ -136,12 +142,14 @@ namespace GraphApp
             _phy.Text = $"Phylesis     : {n.Phylesis}";
         }
 
-        // ---------- surbrillance chemin ----------
-        private void Highlight(Node target)
+        // ---------- Highlight path ----------
+        private void HighlightPath(Node target)
         {
             var path = new HashSet<Node>();
             var parent = _graph.Edges.ToDictionary(e => e.Target, e => e.Source);
-            for (var cur = target; cur != null; parent.TryGetValue(cur, out cur)) path.Add(cur);
+            for (var cur = target; cur != null; parent.TryGetValue(cur, out cur))
+                path.Add(cur);
+
             _view.Highlighted = path; _view.Invalidate();
         }
 
@@ -149,17 +157,19 @@ namespace GraphApp
         private void Search()
         {
             string q = _searchBox.Text.Trim(); if (q == "") return;
+
             Node? target = int.TryParse(q, out int id) && _graph.ById.TryGetValue(id, out var n)
                          ? n
                          : _graph.Nodes.FirstOrDefault(n => n.Title.Contains(q, StringComparison.OrdinalIgnoreCase));
             if (target == null) return;
 
-            AddHistory(target); ShowInfo(target); Highlight(target);
+            AddHistory(target); ShowInfo(target); HighlightPath(target);
         }
 
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
-            _physics.Stop(); base.OnFormClosing(e);
+            _physics.Stop();
+            base.OnFormClosing(e);
         }
     }
 }

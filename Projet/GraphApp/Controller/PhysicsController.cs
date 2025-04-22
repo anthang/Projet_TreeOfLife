@@ -7,6 +7,9 @@ namespace GraphApp.Controller
 {
     public class PhysicsController
     {
+        public void Pause() => _timer.Enabled = false;
+        public void Resume() => _timer.Enabled = true;
+
         private readonly Graph _graph;
         private readonly Control _invalidator;
         private readonly System.Windows.Forms.Timer _timer;
