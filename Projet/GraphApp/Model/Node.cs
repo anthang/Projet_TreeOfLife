@@ -5,7 +5,7 @@ namespace GraphApp.Model
         public int Id { get; set; }
         public string Title { get; set; } = string.Empty;
 
-        // ?? nouvelles infos
+
         public int ChildNodes { get; set; }
         public bool IsLeaf { get; set; }
         public string TolOrgLink { get; set; } = string.Empty;
@@ -13,12 +13,12 @@ namespace GraphApp.Model
         public string Confidence { get; set; } = string.Empty;
         public string Phylesis { get; set; } = string.Empty;
 
-        // ?? interne affichage / physique
+
         public double X, Y, VX, VY;
         public bool IsFixed { get; set; }
         public Vector DragOffset { get; set; } = new(0, 0);
 
-        // arbre
+
         public List<Node> Children { get; } = new();
         public bool Collapsed { get; set; }
     }

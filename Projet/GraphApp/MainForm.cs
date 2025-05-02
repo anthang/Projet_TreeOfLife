@@ -27,7 +27,7 @@ namespace GraphApp
             Width = 1200; Height = 800; DoubleBuffered = true;
 
             // -------- modèle & vue --------
-            _graph = GraphLoader.LoadFromCsv("Data/nodes.csv", "Data/links.csv");
+            _graph = GraphLoader.LoadFromCsv("Data/treeoflife_nodes_simplified.csv", "Data/treeoflife_links_simplified.csv");
             _view = new GraphView(_graph) { Dock = DockStyle.Fill };
             Controls.Add(_view);
 

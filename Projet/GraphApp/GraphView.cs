@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -19,7 +20,7 @@ namespace GraphApp
 
         public event Action<Node>? NodeClicked;
 
-        // zoom / pan
+        // zoom / pan
         private float _scale = 1f;
         private PointF _trans = new(0, 0);
         private bool _panning;
@@ -39,28 +40,42 @@ namespace GraphApp
                 _scale = Math.Clamp(_scale * (e.Delta > 0 ? 1.1f : 1 / 1.1f), .1f, 5f);
                 Invalidate();
             };
-            MouseDown += OnDown; MouseMove += OnMove; MouseUp += OnUp;
+
+            MouseDown += OnDown;
+            MouseMove += OnMove;
+            MouseUp += OnUp;
         }
 
         // ---------- souris ----------
         private void OnDown(object? s, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Right)           // pan
-            { _panning = true; _panStart = e.Location; Cursor = Cursors.Hand; return; }
+            if (e.Button == MouseButtons.Right)          // pan
+            {
+                _panning = true;
+                _panStart = e.Location;
+                Cursor = Cursors.Hand;
+                return;
+            }
 
             var (node, toggle) = HitTest(e.Location);
             if (node == null) return;
 
-            if (toggle)                                   // pli / dépli
-            { node.Collapsed = !node.Collapsed; Invalidate(); return; }
+            if (toggle)                                  // pli / dépli
+            {
+                node.Collapsed = !node.Collapsed;
+                Invalidate();
+                return;
+            }
 
-            if (e.Button == MouseButtons.Left)            // drag
+            if (e.Button == MouseButtons.Left)           // drag
             {
                 NodeClicked?.Invoke(node);
                 _dragNode = node;
+
                 var w = ToWorld(e.Location);
                 _dragOffset = new PointF(w.X - node.XF(), w.Y - node.YF());
-                node.IsFixed = true;                      // bloque dans la physique
+
+                node.IsFixed = true;                     // bloque dans la physique
                 Cursor = Cursors.SizeAll;
             }
         }
@@ -68,7 +83,13 @@ namespace GraphApp
         private void OnMove(object? s, MouseEventArgs e)
         {
             if (_panning && e.Button == MouseButtons.Right)
-            { _trans.X += e.X - _panStart.X; _trans.Y += e.Y - _panStart.Y; _panStart = e.Location; Invalidate(); return; }
+            {
+                _trans.X += e.X - _panStart.X;
+                _trans.Y += e.Y - _panStart.Y;
+                _panStart = e.Location;
+                Invalidate();
+                return;
+            }
 
             if (_dragNode != null && e.Button == MouseButtons.Left)
             {
@@ -81,7 +102,12 @@ namespace GraphApp
 
         private void OnUp(object? s, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Right) { _panning = false; Cursor = Cursors.Default; }
+            if (e.Button == MouseButtons.Right)
+            {
+                _panning = false;
+                Cursor = Cursors.Default;
+            }
+
             if (e.Button == MouseButtons.Left && _dragNode != null)
             {
                 _dragNode.IsFixed = false;
@@ -97,57 +123,86 @@ namespace GraphApp
             e.Graphics.ScaleTransform(_scale, _scale);
 
             foreach (var ed in _graph.Edges.Where(ed => Visible(ed.Source) && Visible(ed.Target)))
-                e.Graphics.DrawLine(Pens.Gray, ed.Source.XF(), ed.Source.YF(), ed.Target.XF(), ed.Target.YF());
+                e.Graphics.DrawLine(Pens.Gray,
+                                    ed.Source.XF(), ed.Source.YF(),
+                                    ed.Target.XF(), ed.Target.YF());
 
-            foreach (var n in _graph.Nodes.Where(Visible)) DrawNode(e.Graphics, n);
+            foreach (var n in _graph.Nodes.Where(Visible))
+                DrawNode(e.Graphics, n);
         }
 
         private void DrawNode(Graphics g, Node n)
         {
             float r = 25f;
-            Brush b = Highlighted.Contains(n) ? Brushes.Yellow
-                    : ColorMode switch
-                    {
-                        NodeColorMode.Extinct => n.Extinct ? Brushes.Red : Brushes.Green,
-                        NodeColorMode.TolLink => string.IsNullOrWhiteSpace(n.TolOrgLink)
-                                                  ? new SolidBrush(ColorTranslator.FromHtml("#8E8E8E"))
-                                                  : new SolidBrush(ColorTranslator.FromHtml("#2980B9")),
-                        NodeColorMode.Confidence => n.Confidence switch
-                        {
-                            "2" => new SolidBrush(ColorTranslator.FromHtml("#27AE60")),
-                            "1" => new SolidBrush(ColorTranslator.FromHtml("#F39C12")),
-                            _ => new SolidBrush(ColorTranslator.FromHtml("#E74C3C")),
-                        },
-                        NodeColorMode.Phylesis => n.Phylesis switch
-                        {
-                            "2" => new SolidBrush(ColorTranslator.FromHtml("#1ABC9C")),
-                            "1" => new SolidBrush(ColorTranslator.FromHtml("#3498DB")),
-                            _ => new SolidBrush(ColorTranslator.FromHtml("#9B59B6")),
-                        },
-                        _ => Brushes.MediumPurple
-                    };
 
+            Brush b = Highlighted.Contains(n)
+                ? Brushes.Blue
+                : ColorMode switch
+                {
+                    NodeColorMode.Extinct => n.Extinct switch
+                    {
+                        true => Brushes.Red,
+                        false => Brushes.Green,
+                    },
+                    NodeColorMode.TolLink => n.TolOrgLink switch 
+                    {
+                                                 "0" => Brushes.Red,
+                                                 "1"=> Brushes.Green,
+                                                 
+                             },
+
+                    NodeColorMode.Confidence => n.Confidence switch
+                  
+                    {
+                        "0" => Brushes.Red,
+                        "1" => Brushes.Yellow,
+                        "2" => Brushes.Green,
+                    },
+
+                    NodeColorMode.Phylesis => n.Phylesis switch
+
+                    {
+                        "0" => Brushes.Red,
+                        "1" => Brushes.Yellow,
+                        "2" => Brushes.Green,
+                    },
+
+
+                    _ => Brushes.MediumPurple
+                };
+
+            
             switch (CurrentShape)
             {
                 case NodeShape.Circle:
                     g.FillEllipse(b, n.XF() - r, n.YF() - r, 2 * r, 2 * r);
                     g.DrawEllipse(Pens.Black, n.XF() - r, n.YF() - r, 2 * r, 2 * r);
                     break;
+
                 case NodeShape.Oval:
                     g.FillEllipse(b, n.XF() - 1.5f * r, n.YF() - r, 3 * r, 2 * r);
                     g.DrawEllipse(Pens.Black, n.XF() - 1.5f * r, n.YF() - r, 3 * r, 2 * r);
                     break;
+
                 case NodeShape.Square:
                     g.FillRectangle(b, n.XF() - r, n.YF() - r, 2 * r, 2 * r);
                     g.DrawRectangle(Pens.Black, n.XF() - r, n.YF() - r, 2 * r, 2 * r);
                     break;
+
                 case NodeShape.Rectangle:
-                    g.FillRectangle(b, n.XF() - r, n.YF() - r, 2 * r, 2 * r);
-                    g.DrawRectangle(Pens.Black, n.XF() - r, n.YF() - r, 2 * r, 2 * r);
+                    g.FillRectangle(b, n.XF() - r, n.YF() - r, 2 * r, 3 * r);
+                    g.DrawRectangle(Pens.Black, n.XF() - r, n.YF() - r, 2 * r, 3 * r);
                     break;
+
                 case NodeShape.Triangle:
-                    PointF[] tri = { new(n.XF(), n.YF() - r), new(n.XF() + r, n.YF() + r), new(n.XF() - r, n.YF() + r) };
-                    g.FillPolygon(b, tri); g.DrawPolygon(Pens.Black, tri);
+                    PointF[] tri =
+                    {
+                        new(n.XF(),      n.YF() - r),
+                        new(n.XF() + r,  n.YF() + r),
+                        new(n.XF() - r,  n.YF() + r)
+                    };
+                    g.FillPolygon(b, tri);
+                    g.DrawPolygon(Pens.Black, tri);
                     break;
             }
 
@@ -156,10 +211,32 @@ namespace GraphApp
             {
                 float s = 10;
                 var rect = new RectangleF(n.XF() + r, n.YF() - s / 2, s, s);
+
                 g.FillRectangle(Brushes.White, rect);
                 g.DrawRectangle(Pens.Black, rect.X, rect.Y, s, s);
-                g.DrawLine(Pens.Black, rect.X + 2, rect.Y + s / 2, rect.Right - 2, rect.Y + s / 2);
-                if (n.Collapsed) g.DrawLine(Pens.Black, rect.X + s / 2, rect.Y + 2, rect.X + s / 2, rect.Bottom - 2);
+                g.DrawLine(Pens.Black,
+                           rect.X + 2, rect.Y + s / 2,
+                           rect.Right - 2, rect.Y + s / 2);
+                if (n.Collapsed)
+                    g.DrawLine(Pens.Black,
+                               rect.X + s / 2, rect.Y + 2,
+                               rect.X + s / 2, rect.Bottom - 2);
+            }
+
+            // --- NOUVEAU : titre sous le nœud ------------------------
+            if (!string.IsNullOrWhiteSpace(n.Title))
+            {
+                const float padding = 4f;
+                float textY = n.YF() + r + padding;
+
+                using var sf = new StringFormat
+                {
+                    Alignment = StringAlignment.Center,
+                    LineAlignment = StringAlignment.Near
+                };
+
+                g.DrawString(n.Title, Font, Brushes.Black,
+                             new PointF(n.XF(), textY), sf);
             }
         }
 
@@ -167,29 +244,44 @@ namespace GraphApp
         private (Node? node, bool toggle) HitTest(Point p)
         {
             var w = ToWorld(p);
+
             foreach (var n in _graph.Nodes)
             {
                 float r = 25f;
+
                 if (n.Children.Any())
                 {
                     var rect = new RectangleF(n.XF() + r, n.YF() - 5, 10, 10);
                     if (rect.Contains(w)) return (n, true);
                 }
-                float dx = w.X - n.XF(), dy = w.Y - n.YF();
+
+                float dx = w.X - n.XF();
+                float dy = w.Y - n.YF();
                 if (dx * dx + dy * dy <= r * r) return (n, false);
             }
+
             return (null, false);
         }
 
         private bool Visible(Node n)
         {
-            for (var cur = n; cur != null; cur = _graph.Edges.FirstOrDefault(e => e.Target == cur)?.Source)
+            for (var cur = n; cur != null;
+                 cur = _graph.Edges.FirstOrDefault(e => e.Target == cur)?.Source)
+            {
                 if (cur.Collapsed && cur != n) return false;
+            }
+
             return true;
         }
 
-        private PointF ToWorld(Point p) => new((p.X - _trans.X) / _scale, (p.Y - _trans.Y) / _scale);
+        private PointF ToWorld(Point p) =>
+            new((p.X - _trans.X) / _scale,
+                (p.Y - _trans.Y) / _scale);
     }
 
-    static class NodeExt { public static float XF(this Node n) => (float)n.X; public static float YF(this Node n) => (float)n.Y; }
+    static class NodeExt
+    {
+        public static float XF(this Node n) => (float)n.X;
+        public static float YF(this Node n) => (float)n.Y;
+    }
 }

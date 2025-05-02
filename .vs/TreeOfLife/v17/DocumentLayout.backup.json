@@ -60,7 +60,7 @@
               "RelativeDocumentMoniker": "TreeOfLife\\TreeOfLife.csproj",
               "ToolTip": "C:\\Users\\antho\\Desktop\\2024-2025\\Programmation_Interface\\2025-projet-G1\\TreeOfLife\\TreeOfLife\\TreeOfLife.csproj",
               "RelativeToolTip": "TreeOfLife\\TreeOfLife.csproj",
-              "ViewState": "AgIAAAAAAAAAE6neQ5EIwBYAAAAKAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAE6neQ5EIwBYAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
               "WhenOpened": "2025-04-09T15:12:57.964Z",
               "EditorCaption": ""
@@ -87,7 +87,8 @@
               "RelativeToolTip": "TreeOfLife\\Views\\View.Designer.cs",
               "ViewState": "AgIAACkAAAAAAAAAAAAwwD4AAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-06T07:17:51.503Z"
+              "WhenOpened": "2025-04-06T07:17:51.503Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -123,7 +124,8 @@
               "ToolTip": "C:\\Users\\antho\\Desktop\\2024-2025\\Programmation_Interface\\2025-projet-G1\\TreeOfLife\\TreeOfLife\\Views\\View.cs [Conception]",
               "RelativeToolTip": "TreeOfLife\\Views\\View.cs [Conception]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-06T07:33:28.539Z"
+              "WhenOpened": "2025-04-06T07:33:28.539Z",
+              "EditorCaption": " [Conception]"
             },
             {
               "$type": "Document",
